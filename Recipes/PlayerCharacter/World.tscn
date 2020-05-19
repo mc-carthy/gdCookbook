@@ -29,4 +29,3 @@ shape = SubResource( 3 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -1, -2.09447e-07, 2.49609e-07, 0, 0.766044, 0.642788, -3.25841e-07, 0.642788, -0.766044, 0, 6, -5 )
-current = true
