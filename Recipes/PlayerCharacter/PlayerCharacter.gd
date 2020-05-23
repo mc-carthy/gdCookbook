@@ -2,9 +2,12 @@ extends KinematicBody
 
 onready var head_pivot: Spatial = $HeadPivot
 
+const GRAVITY = -9.8
+
 var move_speed: float = 10.0
 var direction: Vector3 = Vector3()
 var velocity: Vector3 = Vector3()
+var jump_speed: float = 5.0
 var mouse_sensitivity: float = 0.3
 var max_vertical_camera_angle: float = 60
 
@@ -31,5 +34,14 @@ func _process(delta: float) -> void:
 		direction -= transform.basis.x
 	
 	direction = direction.normalized()
-	velocity = direction * move_speed
-	move_and_slide(velocity, Vector3.UP)
+	velocity.x = direction.x * move_speed
+	velocity.z = direction.z * move_speed
+	
+	if is_on_floor():
+		velocity.y = 0
+		if Input.is_action_pressed('jump'):
+			velocity.y = jump_speed
+	else:
+		velocity.y += GRAVITY * delta
+
+	velocity = move_and_slide(velocity, Vector3.UP)
