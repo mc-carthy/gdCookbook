@@ -33,8 +33,8 @@ mesh = SubResource( 3 )
 material/0 = null
 
 [node name="HeadPivot" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, -1.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0 )
 
 [node name="Camera" type="Camera" parent="HeadPivot"]
-transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, 0 )
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -1, 0.2, -2 )
 current = true
