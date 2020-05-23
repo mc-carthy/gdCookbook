@@ -10,6 +10,8 @@ var velocity: Vector3 = Vector3()
 var jump_speed: float = 5.0
 var mouse_sensitivity: float = 0.3
 var max_vertical_camera_angle: float = 60
+var max_num_jumps: int = 3
+var current_num_jumps: int = 0
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -37,10 +39,14 @@ func _process(delta: float) -> void:
 	velocity.x = direction.x * move_speed
 	velocity.z = direction.z * move_speed
 	
-	if is_on_floor():
-		velocity.y = 0
-		if Input.is_action_pressed('jump'):
+	if Input.is_action_just_pressed('jump'):
+		if current_num_jumps < max_num_jumps:
 			velocity.y = jump_speed
+			current_num_jumps += 1
+	
+	if is_on_floor():
+		current_num_jumps = 0
+		velocity.y = 0
 	else:
 		velocity.y += GRAVITY * delta
 
